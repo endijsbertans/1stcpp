@@ -14,10 +14,10 @@ Students::Students()
     : id{""}, grupa{""}, vards{""}, studiju_gads{1}, studiju_kursi{}{}
 
 Students::Students(const string &id, const string &grupa, const string &vards, int studiju_gads)
-    : id{id}, grupa{grupa}, vards{vards}, studiju_gads{studiju_gads}{}
+    : id{id}, grupa{grupa}, vards{vards}, studiju_gads{parbaudit_sg(studiju_gads)}{}
 
 Students::Students(const string &id, const string &grupa, const string &vards, int studiju_gads,const vector<Studiju_kurss> &studiju_kursi)
-    : id{id}, grupa{grupa}, vards{vards}, studiju_gads{studiju_gads}, studiju_kursi{studiju_kursi}{}
+    : id{id}, grupa{grupa}, vards{vards}, studiju_gads{parbaudit_sg(studiju_gads)}, studiju_kursi{studiju_kursi}{}
 
 int Students::parbaudit_sg(int studiju_gads) {
     assert(studiju_gads >= 1 && studiju_gads <= 4);
@@ -67,7 +67,7 @@ void Students::set_studiju_kursi(const vector<Studiju_kurss> &studijuKursi) {
 Studiju_kurss &Students::kurss_pec_nosaukuma(const string &nosaukums) {
 
     for (auto &x: studiju_kursi) {
-        if (x.get_id() == id) {
+        if (x.get_nosaukums() == nosaukums) {
             return x;
         }
     }
@@ -77,16 +77,16 @@ Studiju_kurss &Students::kurss_pec_nosaukuma(const string &nosaukums) {
 
 const Studiju_kurss &Students::kurss_pec_nosaukuma(const string &nosaukums) const {
     for (const auto &x: studiju_kursi) {
-        if (x.get_id() == id) {
+        if (x.get_nosaukums() == nosaukums) {
             return x;
         }
     }
     throw runtime_error("Course not found: " + nosaukums);
 }
 
-bool Students::vai_ir_kurss_nosaukums(const string &nosaukums) {
+bool Students::vai_ir_kurss(const string &nosaukums) {
     for(const auto& x : studiju_kursi){
-        if(x.get_id() == id ){
+        if(x.get_nosaukums() == nosaukums ){
             return true;
         }
     }
@@ -105,18 +105,21 @@ const Studiju_kurss& Students::operator[](int i) const {
 }
 
 void Students::pievienot_kursu(const Studiju_kurss &kurss) {
-    if(id != kurss.get_id()){
+    if(vai_ir_kurss((kurss.get_nosaukums()))){
+        //throw string{"Course already exists: " + kurss.get_nosaukums()};
+    }else{
         studiju_kursi.push_back(kurss);
     }
-    throw runtime_error("Course already exists: " + kurss.get_id());
 }
 
 void Students::pievienot_kursus(const vector<Studiju_kurss> &kursi) {
     for(const auto& x : kursi){
-        if(id != x.get_id()){
+        if(id == x.get_id()){
+            throw string{"Course already exists: " + x.get_id()};
+        } else {
             studiju_kursi.push_back(x);
         }
-        throw runtime_error("Course already exists: " + x.get_id());
+
     }
 }
 
@@ -155,7 +158,7 @@ void Students::izvadit_ekrana() {
          << "Kursi: " << endl;
     for(const auto& x : studiju_kursi){
         cout << setw(40) << left <<"Kursa nosaukums: " << " | " << left << setw(20) << "Kursa atzīme: " << endl
-             << setw(40) << left << x.get_nosaukums() << " | " << left << setw(20) << x.get_atzime() << "---" << endl;
+             << setw(40) << left << x.get_nosaukums() << " | " << left << setw(20) << x.get_atzime() << "\n---" << endl;
     }
 }
 
@@ -167,14 +170,16 @@ void Students::izvadit_ekrana_vid_atzimes() {
 }
 
 void Students::izvadit_ekrana_visu() {
-    cout << "Id: " << id << endl
-         << "Vārds: " << vards << endl
-         << "Grupa: " << grupa << endl
-         << "Studiju gads: " << studiju_gads << endl
-         << "Kursi: " << endl;
+
+    cout << "Kursi: " << endl;
+
     for(const auto& x : studiju_kursi){
         cout << fixed << setw(12) << left << "Kursa id:" << " | " << setw(40) << left << "Kursa nosaukums:" << " | " << setw(15) << left << "Kursa atzīme:" << " | " << setw(20) << left << "Kursa kredītpunkti:" << endl;
         cout << fixed << setw(12) << left << x.get_id() << " | " << setw(40) << left << x.get_nosaukums() << " | " << setw(15) << left << x.get_atzime() << " | " << setw(20) << left << x.get_kred_punkti() << endl;
         cout << "---" << endl;
     }
+    cout << fixed << setw(12) << left << "pers id:" << " | " << setw(20) << left << "vārds:" << " | " << setw(15) << left << "Grupa:" << " | " << setw(20) << left << "Studiju gads:" << " | " << setw(15) << left << "Vid atzīme:" << " | " << setw(20) << left << "Videja Svērtā atzīme::" << endl;;
+    cout << fixed << setw(12) << left << id << " | " << setw(20) << left << vards << " | " << setw(15) << left << grupa << " | " << setw(20) << left << studiju_gads  <<" | " << setw(15) << left << videja_atzime() << " | " << setw(20) << left << videja_sverta_atzime() << endl;
+
+    cout << "\n---------------------------------\n";
 }

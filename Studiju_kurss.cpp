@@ -6,6 +6,7 @@
 #include <string>
 #include <cassert>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 Studiju_kurss::Studiju_kurss()
@@ -60,11 +61,15 @@ void Studiju_kurss::set_atzime(int atzime) {
 }
 
 ostream &operator<<(ostream &out, const Studiju_kurss &s) {
-    out << "Id: " << s.id << "\n Nos: " << s.nosaukums << "\n Kp: " << s.kred_punkti << "\n atzīme: " << s.atzime;
+
+    out << setw(6) << left << "Id:" << setw(3) << " | " << setw(40) << left << "Nos:" << setw(5) << left << "Kp:"
+        << setw(3) << " | " << setw(6) << left << "Atzime:" << endl
+        << setw(6) << left << s.id << setw(3) << " | " << setw(40) << left << s.nosaukums << setw(5) << left
+        << s.kred_punkti << setw(3) << " | " << setw(6) << left << s.atzime << endl;
     return out;
 }
 
 void Studiju_kurss::kursa_informacija() {
-    cout << "Id: " << id << "\n Nos: " << nosaukums << "\n Kp: " << kred_punkti;
-
+    cout << setw(6) << left << "Id:" << setw(3) << " | " << setw(40) << left << "Nosaukums:" << setw(3) << " | " << setw(6) << left << "Kp:" << endl
+    << setw(6) << left << id <<setw(3) << " | " << setw(42) << left << nosaukums << setw(3) << " | " << setw(6) << left << kred_punkti << endl;
 }
