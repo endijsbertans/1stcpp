@@ -6,5 +6,6 @@ using namespace std;
 
 int main() {
     studiju_kurss_tests();
+    students_tests();
     return 0;
 }

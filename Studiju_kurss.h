@@ -4,7 +4,7 @@
 
 #ifndef HOMEWORK1_STUDIJU_KURSS_H
 #define HOMEWORK1_STUDIJU_KURSS_H
-#include "string"
+#include <string>
 #include <iostream>
 using namespace std;
 class Studiju_kurss {

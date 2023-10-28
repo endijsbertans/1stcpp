@@ -32,8 +32,22 @@ public:
     void set_studiju_gads(int studijuGads);
     void set_studiju_kursi(const vector<Studiju_kurss> &studijuKursi);
     // meklēšana
-    bool vai_ir_kurss_id(const string& id);
-    bool vai_ir_kurss_nos(const string& nosaukums);
+
+    bool vai_ir_kurss_nosaukums(const string& nosaukums);
+    Studiju_kurss& kurss_pec_nosaukuma(const string& nosaukums);
+    const Studiju_kurss& kurss_pec_nosaukuma(const string& nosaukums) const;
+
+    Studiju_kurss& operator[](int i);
+    const Studiju_kurss& operator[](int i) const;
+
+    void pievienot_kursu(const Studiju_kurss& kurss);
+    void pievienot_kursus(const vector<Studiju_kurss>& kursi);
+    double videja_atzime();
+    double videja_sverta_atzime();
+
+    void izvadit_ekrana();
+    void izvadit_ekrana_vid_atzimes();
+    void izvadit_ekrana_visu();
 };
 
 
