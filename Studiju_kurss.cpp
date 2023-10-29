@@ -10,13 +10,13 @@
 using namespace std;
 
 Studiju_kurss::Studiju_kurss()
-    : id{""}, nosaukums{""}, kred_punkti{0}, atzime{-1} {}
+    : kursa_id{""}, nosaukums{""}, kred_punkti{0}, atzime{-1} {}
 
-Studiju_kurss::Studiju_kurss(const string &id, const string &nosaukums, int kred_punkti)
-    : id{id}, nosaukums{nosaukums}, kred_punkti{parbaudit_kp(kred_punkti)}{}
+Studiju_kurss::Studiju_kurss(const string &kursa_id, const string &nosaukums, int kred_punkti)
+    : kursa_id{kursa_id}, nosaukums{nosaukums}, kred_punkti{parbaudit_kp(kred_punkti)}{}
 
-Studiju_kurss::Studiju_kurss(const string &id, const string &nosaukums, int kred_punkti, int atzime)
-    : id{id}, nosaukums{nosaukums}, kred_punkti{parbaudit_kp(kred_punkti)}, atzime{parbaudit_atz(atzime)}{}
+Studiju_kurss::Studiju_kurss(const string &kursa_id, const string &nosaukums, int kred_punkti, int atzime)
+    : kursa_id{kursa_id}, nosaukums{nosaukums}, kred_punkti{parbaudit_kp(kred_punkti)}, atzime{parbaudit_atz(atzime)}{}
 
 int Studiju_kurss::parbaudit_kp(int kred_punkti) {
     assert(kred_punkti > 0);
@@ -29,7 +29,7 @@ int Studiju_kurss::parbaudit_atz(int atzime) {
 }
 
 const string &Studiju_kurss::get_id() const {
-    return id;
+    return kursa_id;
 }
 
 const string &Studiju_kurss::get_nosaukums() const {
@@ -45,7 +45,7 @@ int Studiju_kurss::get_atzime() const {
 }
 
 void Studiju_kurss::set_id(const string &id) {
-    Studiju_kurss::id = id;
+    kursa_id = id;
 }
 
 void Studiju_kurss::set_nosaukums(const string &nosaukums) {
@@ -64,12 +64,12 @@ ostream &operator<<(ostream &out, const Studiju_kurss &s) {
 
     out << setw(6) << left << "Id:" << setw(3) << " | " << setw(40) << left << "Nos:" << setw(5) << left << "Kp:"
         << setw(3) << " | " << setw(6) << left << "Atzime:" << endl
-        << setw(6) << left << s.id << setw(3) << " | " << setw(40) << left << s.nosaukums << setw(5) << left
+        << setw(6) << left << s.kursa_id << setw(3) << " | " << setw(40) << left << s.nosaukums << setw(5) << left
         << s.kred_punkti << setw(3) << " | " << setw(6) << left << s.atzime << endl;
     return out;
 }
 
 void Studiju_kurss::kursa_informacija() const{
     cout << setw(6) << left << "Id:" << setw(3) << " | " << setw(40) << left << "Nosaukums:" << setw(3) << " | " << setw(6) << left << "Kp:" << endl
-    << setw(6) << left << id <<setw(3) << " | " << setw(42) << left << nosaukums << setw(3) << " | " << setw(6) << left << kred_punkti << endl;
+    << setw(6) << left << kursa_id <<setw(3) << " | " << setw(42) << left << nosaukums << setw(3) << " | " << setw(6) << left << kred_punkti << endl;
 }

@@ -14,7 +14,6 @@ Studentu_PS::Studentu_PS()
     : studenti{}{}
 
 bool Studentu_PS::meklet_studentu_pec_id(const string &id) const{
-
     for (auto &s : studenti){
         if (s.get_id() == id) {
             return true;
@@ -142,14 +141,13 @@ void Studentu_PS::ievadit_kursus_no_faila() {
 }
 void Studentu_PS::ievadit_atzimi_kursam(){
     string stud_id, kursa_id;
-    Studentu_PS atz{};
     int atzime;
     cout << "Ievadiet studenta id: ";
     cin >> stud_id;
     students_pec_id(stud_id).izvadit_ekrana_visu();
-    cout << "Ievadiet kursa id: ";
+    cout << "Ievadiet kursa nosaukumu: ";
     cin >> kursa_id;
-    students_pec_id(stud_id).kurss_pec_nosaukuma(kursa_id).kursa_informacija();
+    students_pec_id(stud_id).kurss_pec_id(kursa_id);
     cout << "Ievadiet atzīmi: ";
     cin >> atzime;
     students_pec_id(stud_id).kurss_pec_nosaukuma(kursa_id).set_atzime(atzime);

@@ -71,7 +71,7 @@ Studiju_kurss &Students::kurss_pec_nosaukuma(const string &nosaukums) {
             return x;
         }
     }
-    throw runtime_error("Kurss nav atrasts: " + id);
+    throw runtime_error("Kurss nav atrasts: " + nosaukums);
 }
 
 const Studiju_kurss &Students::kurss_pec_nosaukuma(const string &nosaukums) const {
@@ -80,9 +80,25 @@ const Studiju_kurss &Students::kurss_pec_nosaukuma(const string &nosaukums) cons
             return x;
         }
     }
+    throw runtime_error("Kurss nav atrasts: " + nosaukums);
+}
+Studiju_kurss &Students::kurss_pec_id(const string &id) {
+    for (auto &x: studiju_kursi) {
+        if (x.get_nosaukums() == id) {
+            return x;
+        }
+    }
     throw runtime_error("Kurss nav atrasts: " + id);
 }
 
+const Studiju_kurss &Students::kurss_pec_id(const string &id) const {
+    for (const auto &x: studiju_kursi) {
+        if (x.get_nosaukums() == id) {
+            return x;
+        }
+    }
+    throw runtime_error("Kurss nav atrasts: " + id);
+}
 bool Students::vai_ir_kurss(const string &nosaukums) {
     for(const auto& x : studiju_kursi){
         if(x.get_nosaukums() == nosaukums ){
