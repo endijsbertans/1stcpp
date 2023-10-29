@@ -11,6 +11,7 @@
 #include <vector>
 #include "Studiju_kurss.h"
 #include "Students.h"
+#include "Studentu_PS.h"
 using namespace std;
 
 void studiju_kurss_tests() {
@@ -22,6 +23,7 @@ void studiju_kurss_tests() {
     it.kursa_informacija();
     s1.kursa_informacija();
     cout << "\nStudiju kurss tests pabeigts!" << endl << endl << endl;
+
 }
 void students_tests() {
     cout << "sākas students tests\n";
@@ -50,15 +52,36 @@ void students_tests() {
     cout << "visa info par s3 \n";
     s3.izvadit_ekrana_visu();
     cout << "kurss ar nosaukumu IKT (1 - true, 0 - false): " << s3.vai_ir_kurss("IKT") << endl;
-    cout << "Students tests pabeigts!" << endl << endl << endl;
+
     // izvada no s3 kursu pec nosaukuma ikt
     cout << s3.kurss_pec_nosaukuma("IKT");
     cout << "s3[1] = \n" << s3[1] << endl;
     //s3[1] = s4[0];
     s3.izvadit_ekrana_visu();
     s3.pievienot_kursu(s4[0]);
-    s3.pievienot_kursu(s4[0]);
+    //s3.pievienot_kursu(s4[0]);
     s3.izvadit_ekrana_visu();
-}
+    vector<Studiju_kurss> itb_kursi = {
+            {"2104", "Komplektešana", 4, 9},
+            {"2341", "OOP", 2, 5},
+            {"5215", "Varbūtība", 2, 10}
+    };
+    s3.pievienot_kursus(itb_kursi);
+    s3.izvadit_ekrana_visu();
 
+    cout << "\n Klases students tests pabeigts!" << endl;
+
+}
+void test_of_studentPS(){
+    Studentu_PS ps{};
+    //ps.studenta_pievienosna();
+
+    ps.izvadit_info_par_studentiem();
+    ps.izvadit_studentu_vid_atzimes();
+    ps.izvadit_visu_studentu_info();
+    cout << "Studentu_PS tests pabeigts!" << endl;
+    cout << "Studentu_PS tests pabeigts!" << endl;
+    cout << "Studentu_PS tests pabeigts!" << endl;
+
+};
 #endif //HOMEWORK1_TESTI_H

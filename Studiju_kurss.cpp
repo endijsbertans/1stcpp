@@ -69,7 +69,7 @@ ostream &operator<<(ostream &out, const Studiju_kurss &s) {
     return out;
 }
 
-void Studiju_kurss::kursa_informacija() {
+void Studiju_kurss::kursa_informacija() const{
     cout << setw(6) << left << "Id:" << setw(3) << " | " << setw(40) << left << "Nosaukums:" << setw(3) << " | " << setw(6) << left << "Kp:" << endl
     << setw(6) << left << id <<setw(3) << " | " << setw(42) << left << nosaukums << setw(3) << " | " << setw(6) << left << kred_punkti << endl;
 }

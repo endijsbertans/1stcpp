@@ -34,8 +34,8 @@ public:
     // meklēšana
 
     bool vai_ir_kurss(const string& nosaukums);
-    Studiju_kurss& kurss_pec_nosaukuma(const string& nosaukums);
-    const Studiju_kurss& kurss_pec_nosaukuma(const string& nosaukums) const;
+    Studiju_kurss& kurss_pec_nosaukuma(const string& id);
+    const Studiju_kurss& kurss_pec_nosaukuma(const string& id) const;
 
     Studiju_kurss& operator[](int i);
     const Studiju_kurss& operator[](int i) const;
@@ -47,7 +47,7 @@ public:
 
     void izvadit_ekrana();
     void izvadit_ekrana_vid_atzimes();
-        void izvadit_ekrana_visu();
+    void izvadit_ekrana_visu();
 };
 
 
